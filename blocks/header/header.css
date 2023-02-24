@@ -1,0 +1,26 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 880px;
+  min-height: 74px;
+  margin: 0 auto;
+  margin-top: 45px;
+}
+.header::after {
+  content: "";
+  border-bottom: 1px solid #545454;
+  opacity: .7;
+  height: 0;
+  display: block;
+}
+
+@media screen and (max-width: 879px) {
+
+  .header {
+    max-width: 320px;
+    min-height: 56px;
+    margin-top: 28px;
+  }
+
+}

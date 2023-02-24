@@ -1,0 +1,22 @@
+.element__description {
+  margin: 0 auto;
+  margin-top: 25px;
+  display: flex;
+  flex-direction: row;
+  background-color: #FFFFFF;
+  min-width: 240px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media screen and (max-width: 879px) {
+
+
+  .element__description {
+    margin: 0 auto;
+    margin-top: 25px;
+    min-width: 242px;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

@@ -7,6 +7,7 @@
   <title>Место</title>
   <link rel="preconnect" href="https://rsms.me/">
   <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+  <script src="./index.js" defer></script>
 </head>
 <body class="page">
   <header class="header">
@@ -18,10 +19,10 @@
         <img class="profile__avatar" src="./images/profile/__avatar.svg" alt="Аватар">
         <div class="profile__info">
           <div class="profile__row">
-            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <h1 class="profile__name"></h1>
             <button class="profile__edit-button"></button>
           </div>
-          <h2 class="profile__status">Исследователь океана</h2>
+          <h2 class="profile__status"></h2>
         </div>
       </div>
       <button class="profile__add-button"></button>
@@ -81,12 +82,12 @@
   <footer class="footer">
     <p class="footer__copyright">© 2020 Mesto Russia</p>
   </footer>
-  <section class="popup popup_opened">
+  <section class="popup ">
     <div class="popup__container">
       <h3 class="popup__title">Редактировать профиль</h3>
       <form class="popup__form">
-        <input class="popup__input">
-        <input class="popup__input">
+        <input class="popup__input popup__input-name">
+        <input class="popup__input popup__input-status">
         <button class="popup__submit-button">Сохранить</button>
       </form>
       <button class="popup__close"></button>
