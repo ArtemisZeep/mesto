@@ -1,0 +1,29 @@
+.profile__name {
+  max-width: 500px;
+  max-height: 39px;
+  color: white;
+  margin: 0;
+  font-weight: 500;
+  font-size: 42px;
+  line-height: 48px;
+
+/*
+text-overflow: ellipsis;
+white-space: nowrap;
+overflow: hidden;
+
+Я хотел добавить эти свойства, но буквы, которые ниже границ (например у или р) обрезаются снизу. 
+Подскажите пожалуйста, как лучше реализовать это?
+*/
+}
+
+@media screen and (max-width: 879px) {
+
+  .profile__name {
+    text-align: center;
+    font-weight: 500;
+    font-size: 27px;
+    line-height: 33px;
+    max-width: 237px;
+  }
+}
