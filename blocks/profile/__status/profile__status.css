@@ -1,6 +1,5 @@
 .profile__status {
   max-width: 500px;
-  max-height: 18px;
   color: white;
   font-weight: 400;
   font-size: 18px;
@@ -24,7 +23,6 @@ overflow: hidden;
     font-size: 14px;
     line-height: 17px;
     margin-top: 15px;
-    max-height: 14px;
     max-width: 200px;
   }
 }
