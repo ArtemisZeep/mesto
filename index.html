@@ -5,8 +5,6 @@
   <link rel="stylesheet" href="./pages/index.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Место</title>
-  <link rel="preconnect" href="https://rsms.me/">
-  <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
   <script src="./scripts/index.js" defer></script>
 </head>
 <body class="page">
@@ -16,16 +14,16 @@
   <main class="main">
     <section class="profile">
       <div class="profile__content">
-        <img class="profile__avatar" src="./images/profile/__avatar.svg" alt="Аватар">
+        <img class="profile__avatar" src="./images/profile/__avatar.png" alt="Аватар">
         <div class="profile__info">
           <div class="profile__row">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
-            <button class="profile__edit-button"></button>
+            <button class="profile__edit-button" type="button"></button>
           </div>
           <h2 class="profile__status">Исследователь океана</h2>
         </div>
       </div>
-      <button class="profile__add-button"></button>
+      <button class="profile__add-button" type="button"></button>
     </section>
     <section class="cards-grid">
       <ul class="elements">
@@ -33,7 +31,7 @@
           <img class="element__photo" src="./images/element/karachayevsk.png" alt="Карачаевск">
           <div class="element__description">
             <h3 class="element__title">Карачаевск</h3>
-            <button class="element__like"></button>
+            <button class="element__like" type="button"></button>
           </div>
         </li>
 
@@ -41,7 +39,7 @@
           <img class="element__photo" src="./images/element/elbrus.png" alt="Карачаевск">
           <div class="element__description">
             <h3 class="element__title">Гора Эльбрус</h3>
-            <button class="element__like"></button>
+            <button class="element__like" type="button"></button>
           </div>
         </li>
 
@@ -49,7 +47,7 @@
           <img class="element__photo" src="./images/element/dombay.png" alt="Карачаевск">
           <div class="element__description">
             <h3 class="element__title">Домбай</h3>
-            <button class="element__like"></button>
+            <button class="element__like" type="button"></button>
           </div>
         </li>
 
@@ -57,7 +55,7 @@
           <img class="element__photo" src="./images/element/elbrus.png" alt="Карачаевск">
           <div class="element__description">
             <h3 class="element__title">Гора Эльбрус</h3>
-            <button class="element__like"></button>
+            <button class="element__like" type="button"></button>
           </div>
         </li>
 
@@ -65,14 +63,14 @@
           <img class="element__photo" src="./images/element/dombay.png" alt="Карачаевск">
           <div class="element__description">
             <h3 class="element__title">Домбай</h3>
-            <button class="element__like"></button>
+            <button class="element__like" type="button"></button>
           </div>
         </li>
 
         <li class="element">
           <img class="element__photo" src="./images/element/karachayevsk.png" alt="Карачаевск">
           <div class="element__description">
-            <h3 class="element__title">Карачаево-Ч...</h3>
+            <h3 class="element__title" type="button">Карачаево-Ч...</h3>
             <button class="element__like"></button>
           </div>
         </li>
@@ -85,12 +83,12 @@
   <section class="popup ">
     <div class="popup__container">
       <h3 class="popup__title">Редактировать профиль</h3>
-      <form class="popup__form">
-        <input class="popup__input popup__input-name">
-        <input class="popup__input popup__input-status">
-        <button class="popup__submit-button">Сохранить</button>
+      <form class="popup__form" name="profileForm">
+        <input class="popup__input popup__input_text-name" type="text" name="profileInputName">
+        <input class="popup__input popup__input_text-status" type="text" name="profileInputStatus">
+        <button class="popup__submit-button" type="submit">Сохранить</button>
       </form>
-      <button class="popup__close"></button>
+      <button class="popup__close" type="reset"></button>
     </div>
 
   </section>

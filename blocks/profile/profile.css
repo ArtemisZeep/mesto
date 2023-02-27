@@ -1,6 +1,5 @@
 .profile {
   max-width: 880px;
-  max-height: 120px;
   margin: 0 auto;
   margin-top: 40px;
   position: relative;
@@ -10,11 +9,10 @@
   justify-content: space-between;
 }
 
-@media screen and (max-width: 879px) {
+@media screen and (max-width: 899px) {
 
   .profile {
     max-width: 282px;
-    max-height: 286px;
     margin-top: 42px;
     flex-direction: column;
   }

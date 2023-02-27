@@ -11,14 +11,16 @@
   cursor: pointer;
 }
 
-@media screen and (max-width: 879px) {
+.profile__add-button:hover {
+  opacity: 0.6;
+}
+
+@media screen and (max-width: 899px) {
   
   .profile__add-button {
     padding: 0;
     min-width: 282px;
-    min-height: 50px;
-    max-height: 50px;
-    margin-top: 36px;
+    margin-top: 31px;
     background-size: 16px;
   }
 }

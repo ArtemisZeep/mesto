@@ -10,9 +10,16 @@
   line-height: 22px;
   text-align: center;
   cursor: pointer;
+  border-radius: 2px;
+  
 }
 
-@media screen and (max-width: 879px) {
+
+.popup__submit-button:hover {
+  opacity: 0.8;
+}
+
+@media screen and (max-width: 899px) {
 
   .popup__submit-button {
     height: 46px;
