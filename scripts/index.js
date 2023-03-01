@@ -6,9 +6,9 @@ let profileNameElement= document.querySelector('.profile__name');
 
 let profileStatusElement = document.querySelector('.profile__status');
 
-let profileNameInput = document.querySelector('.popup__input_text-name');
+let profileNameInput = document.querySelector('.popup__input_text_name');
 
-let profileStatusInput = document.querySelector('.popup__input_text-status');
+let profileStatusInput = document.querySelector('.popup__input_text_status');
 
 let formElement = document.querySelector('.popup__form');
 
@@ -30,6 +30,6 @@ function handleFormSubmit (evt) {
   evt.preventDefault();
   profileNameElement.textContent = profileNameInput.value
   profileStatusElement.textContent = profileStatusInput.value
-  editPopup.classList.remove('popup_opened');
+  popupClose()
 }
 formElement.addEventListener('submit', handleFormSubmit); 
