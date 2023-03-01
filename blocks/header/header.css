@@ -6,13 +6,7 @@
   min-height: 74px;
   margin: 0 auto;
   margin-top: 45px;
-}
-.header::after {
-  content: "";
-  border-bottom: 1px solid #545454;
-  opacity: .7;
-  height: 0;
-  display: block;
+  border-bottom: 1px solid rgba(84, 84, 84, 0.7);
 }
 
 @media screen and (max-width: 879px) {
