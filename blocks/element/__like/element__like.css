@@ -2,19 +2,20 @@
   margin: 0;
   padding: 0;
   border: 0;
-  margin-right: 5px;
   width: 22px;
   height: 19px;
   background-color: transparent;
-  background-image: url(../images/element/Like.svg);
+  background-image: url(../../../images/element/__like.svg);
   background-repeat: no-repeat;
   background-position: center;
+  cursor: pointer;
 }
 
-
-@media screen and (max-width: 879px) {
-
-  .element__like {
-    margin: 0;
+.element__like:hover {
+  opacity: 0.5;
 }
-}
+
+.element__like:active {
+  background-image: url(../../../images/element/__like-active.svg);
+} 
+

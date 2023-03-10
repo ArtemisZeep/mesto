@@ -1,6 +1,9 @@
 .element__description {
-  margin: 0 auto;
+  margin: 0;
+  margin-left: 20px;
+  margin-right: 21px;
   margin-top: 25px;
+  margin-bottom: 25px;
   display: flex;
   flex-direction: row;
   background-color: #FFFFFF;
@@ -9,14 +12,13 @@
   align-items: center;
 }
 
-@media screen and (max-width: 879px) {
+
+@media screen and (max-width: 899px) {
 
 
   .element__description {
-    margin: 0 auto;
-    margin-top: 25px;
     min-width: 242px;
-    justify-content: space-between;
-    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
   }
 }

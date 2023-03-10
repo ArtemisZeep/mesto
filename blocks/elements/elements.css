@@ -10,15 +10,23 @@
   gap: 20px 16px;
 }
 
+<<<<<<< HEAD
 @media screen and (max-width: 879px) {
+=======
+@media screen and (max-width: 899px) {
+>>>>>>> main
 
   
   .elements {
     grid-template-rows: repeat(6, 1fr);
     grid-template-columns: 1fr;
+<<<<<<< HEAD
     list-style: none;
     width: 282px;
     margin: 0 auto;
+=======
+    width: 282px;
+>>>>>>> main
     margin-top: 36px;
   }
 }

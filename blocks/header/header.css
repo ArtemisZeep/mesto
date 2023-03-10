@@ -9,12 +9,24 @@
   border-bottom: 1px solid rgba(84, 84, 84, 0.7);
 }
 
+<<<<<<< HEAD
 @media screen and (max-width: 879px) {
+=======
+@media screen and (max-width: 899px) {
+>>>>>>> main
 
   .header {
     max-width: 320px;
     min-height: 56px;
     margin-top: 28px;
+<<<<<<< HEAD
   }
 
 }
+=======
+
+  }
+
+}
+
+>>>>>>> main
