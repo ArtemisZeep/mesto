@@ -18,12 +18,12 @@
         <div class="profile__info">
           <div class="profile__row">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
-            <button class="profile__edit-button" type="button"></button>
+            <button class="profile__edit-button popup__open" type="button"></button>
           </div>
           <h2 class="profile__status">Исследователь океана</h2>
         </div>
       </div>
-      <button class="profile__add-button" type="button"></button>
+      <button class="profile__add-button popup__open" type="button"></button>
     </section>
     <section class="cards-grid">
       <div class="elements">
@@ -62,21 +62,16 @@
         <input class="popup__input popup__input_card_link" type="text" name="profileInputStatus" placeholder="Ссылка на картинку">
         <button class="popup__submit-button" type="submit">Сохранить</button>
       </form>
-      <button class="popup__close popup__close_type_add" type="button"></button>
+      <button class="popup__close" type="button"></button>
+    </div>
+  </section>
+  <section class='popup popup-photo'>
+    <div class="popup-photo__container">
+      <img class="popup-photo__photo" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg">
+      <p class="popup-photo__name">Байкал</p>
+      <button class="popup__close" type="button"></button>
     </div>
   </section>
 
-
-  <section class="popup-photos">
-    <template id="photoTemplate">
-      <section class='popup-photo'>
-        <div class="popup-photo__container">
-          <img class="popup-photo__photo" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg">
-           <p class="popup-photo__name">Байкал</p>
-          <button class="popup-photo__close" type="button"></button>
-        </div>
-      </section>
-    </template>
-  </section>
 </body>
 </html>

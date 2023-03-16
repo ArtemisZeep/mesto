@@ -2,36 +2,36 @@ const editProfileButton = document.querySelector('.profile__edit-button');
 const editPopupProfile = document.querySelector('.popup_place_profile');
 const closeEditPopupButton = document.querySelector('.popup__close_type_edit');
 const editPopupStatus = document.querySelector('.popup_place_status');
+const profileNameElement= document.querySelector('.profile__name');
 
-let profileNameElement= document.querySelector('.profile__name');
+const profileStatusElement = document.querySelector('.profile__status');
 
-let profileStatusElement = document.querySelector('.profile__status');
+const profileNameInput = document.querySelector('.popup__input_text_name');
 
-let profileNameInput = document.querySelector('.popup__input_text_name');
-
-let profileStatusInput = document.querySelector('.popup__input_text_status');
+const profileStatusInput = document.querySelector('.popup__input_text_status');
 
 const formElementProfile = document.querySelector('.popup__form_place_profile');
 
-function popupEditOpen () {
-  editPopupStatus.classList.add('popup_opened');
+
+
+
+function openPopup(popup) {
+  popup.classList.add('popup_opened');
+}
+
+function openPopupEdit () { 
+  openPopup(editPopupStatus);
   profileNameInput.value = profileNameElement.textContent
   profileStatusInput.value = profileStatusElement.textContent
 }
 
-editProfileButton.addEventListener('click', popupEditOpen);
+editProfileButton.addEventListener('click', openPopupEdit);
 
-function popupEditClose () {
-  editPopupStatus.classList.remove('popup_opened');
-}
-
-closeEditPopupButton.addEventListener('click', popupEditClose)
 
 function handleFormSubmitProfile (evt) {
   evt.preventDefault();
   profileNameElement.textContent = profileNameInput.value
   profileStatusElement.textContent = profileStatusInput.value
-  popupEditClose()
 }
 formElementProfile.addEventListener('submit', handleFormSubmitProfile); 
 
@@ -75,15 +75,28 @@ const handleDeleteButtonClick = (event) => {
   element.remove()
 }
 
+const elementsPhoto = document.querySelectorAll('.element__photo');
+const popupPhotoBlock = document.querySelector('.popup-photo');
+const popupPhoto = document.querySelector('.popup-photo__photo');
+const popupName = document.querySelector('.popup-photo__name');
+
+const clickedPopup = (event) => {
+  const clickedElementPhoto = event.target
+  const clickedElementDesctiption = clickedElementPhoto.nextElementSibling
+  const clickedElementName = clickedElementDesctiption.firstElementChild
+  const clickedElementPhotoAttribute = clickedElementPhoto.getAttribute('src')
+  const clickedElementNameAttribute = clickedElementPhoto.getAttribute('alt')
+  popupPhoto.setAttribute('src', clickedElementPhotoAttribute)
+  popupPhoto.setAttribute('alt', clickedElementNameAttribute)
+  popupName.textContent = clickedElementName.textContent
+  openPopup(popupPhotoBlock);
+}
+
+
 const createElement = (element) => {
   const newCardTemplate = document.querySelector('#elementTemplate').content
   const newCard = newCardTemplate.querySelector('.element').cloneNode(true)
 
-
-
-  const newCardPopupTemplate = document.querySelector('#photoTemplate').content
-  const newCardPopup = newCardPopupTemplate.querySelector('.popup-photo').cloneNode(true)
- 
 
 
   const elementName = newCard.querySelector('.element__title')
@@ -103,48 +116,39 @@ const createElement = (element) => {
   elements.prepend(newCard)
 
 
-  const elementNamePopup = newCardPopup.querySelector('.popup-photo__name')
-  elementNamePopup.textContent = element.name
 
-  const elementPhotoPopup = newCardPopup.querySelector('.popup-photo__photo')
-  elementPhotoPopup.setAttribute('src', element.link)
-  elementPhotoPopup.setAttribute('alt', element.name) 
 
-  elementPhoto.addEventListener('click', function (){
-  console.log(newCardPopup)
-    newCardPopup.classList.add('popup-photo_opened')
+  const closeButtons = document.querySelectorAll('.popup__close');
+  function closePopup(popup) {
+    popup.classList.remove('popup_opened');
+  }
+  
+  closeButtons.forEach((button) => {
+    const popup = button.closest('.popup');
+    button.addEventListener('click', () => closePopup(popup));
+  });
+ 
+  const elementsPhoto = document.querySelectorAll('.element__photo');
+  elementsPhoto.forEach(element => {
+    element.addEventListener('click',clickedPopup)
   })
-
-  const closePopupPhoto = newCardPopup.querySelector('.popup-photo__close')
-  closePopupPhoto.addEventListener('click', function (){
-    console.log(newCardPopup)
-      newCardPopup.classList.remove('popup-photo_opened')
-    })
-
-  popupPhotos.prepend(newCardPopup)
+  
 }
-
-
 initialElements.forEach(createElement)
+
+
+
 
 
 
 
 const addCardButton = document.querySelector('.profile__add-button');
 const addCardPopup = document.querySelector('.popup_place_card');
-const closeAddPopupButton = document.querySelector('.popup__close_type_add');
 
-function popupAddOpen () {
-  addCardPopup.classList.add('popup_opened');
-
+function openPopupAdd () {
+  openPopup(addCardPopup);
 }
-addCardButton.addEventListener('click', popupAddOpen);
-
-function popupAddClose () {
-  addCardPopup.classList.remove('popup_opened');
-}
-
-closeAddPopupButton.addEventListener('click', popupAddClose)
+addCardButton.addEventListener('click', openPopupAdd);
 
 
 const formElementAdd = document.querySelector('.popup__form_place_add-element');
@@ -152,7 +156,7 @@ const formElementAdd = document.querySelector('.popup__form_place_add-element');
 
 
 
-let handleFormSubmitElement = (event) => {
+const handleFormSubmitElement = (event) => {
   event.preventDefault()
   const formElementAdd = event.target
   const elementName = formElementAdd.querySelector('.popup__input_card_name').value
@@ -162,10 +166,21 @@ let handleFormSubmitElement = (event) => {
     link: elementPhoto,
   }
   createElement(element)
-  popupAddClose()
-
-  
+  formElementAdd.reset()
 }
 
 formElementAdd.addEventListener('submit',handleFormSubmitElement)
+
+
+const submitFormButtons = document.querySelectorAll('.popup__submit-button');
+  
+  
+function closeSubmitPopup(popup) {
+    popup.classList.remove('popup_opened');
+  }
+  
+  submitFormButtons.forEach((submitButton) => {
+    const popup = submitButton.closest('.popup');
+    submitButton.addEventListener('click', () => closeSubmitPopup(popup));
+  });
 
