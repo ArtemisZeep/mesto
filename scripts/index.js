@@ -13,9 +13,13 @@ function openPopup(popup) {
 }
 
 function openPopupEdit () {
+  const submitButton = formElementProfile.querySelector('.popup__submit-button')
+  console.log(submitButton)
+  submitButton.classList.add('popup__submit-button_invalid')
   openPopup(editPopupStatus);
   profileNameInput.value = profileNameElement.textContent;
   profileStatusInput.value = profileStatusElement.textContent;
+  
 }
 
 editProfileButton.addEventListener('click', openPopupEdit);
@@ -36,6 +40,7 @@ function handleFormSubmitProfile (evt) {
   profileNameElement.textContent = profileNameInput.value;
   profileStatusElement.textContent = profileStatusInput.value;
   closePopup(editPopupStatus);
+ 
 }
 formElementProfile.addEventListener('submit', handleFormSubmitProfile);
 
@@ -114,6 +119,9 @@ const addCardButton = document.querySelector('.profile__add-button');
 const addCardPopup = document.querySelector('.popup_place_card');
 
 function openPopupAdd () {
+  const submitButton = formElementAdd.querySelector('.popup__submit-button')
+  console.log(submitButton)
+  submitButton.classList.add('popup__submit-button_invalid')
   openPopup(addCardPopup);
 }
 addCardButton.addEventListener('click', openPopupAdd);
@@ -136,3 +144,25 @@ const handleFormSubmitElement = (event) => {
 
 formElementAdd.addEventListener('submit', handleFormSubmitElement);
 
+
+document.addEventListener("click", (e) => {
+  const popups = document.querySelectorAll('.popup');
+  const popupContainers = document.querySelectorAll('.popup__container');
+  if (e.target.closest(".popup")) {
+    popupContainers.forEach((container) => {
+      if (!e.target.closest(".popup__container")) {
+        const popup = container.closest('.popup')
+        closePopup(popup);
+      }
+    });
+  } 
+});
+
+document.addEventListener('keydown', (event) => {
+  const popups = document.querySelectorAll('.popup');
+  if (event.key === 'Escape') {
+    popups.forEach((popup) => {
+      closePopup(popup);
+    });
+  }
+});
