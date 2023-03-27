@@ -1,110 +1,136 @@
-const editProfileButton = document.querySelector('.profile__edit-button');
-const editPopupProfile = document.querySelector('.popup_place_profile');
-const closeEditPopupButton = document.querySelector('.popup__close_type_edit');
-const editPopupStatus = document.querySelector('.popup_place_status');
-const profileNameElement = document.querySelector('.profile__name');
-const profileStatusElement = document.querySelector('.profile__status');
-const profileNameInput = document.querySelector('.popup__input_text_name');
-const profileStatusInput = document.querySelector('.popup__input_text_status');
-const formElementProfile = document.querySelector('.popup__form_place_profile');
+const editProfileButton = document.querySelector(".profile__edit-button");
+const editPopupProfile = document.querySelector(".popup_place_profile");
+const closeEditPopupButton = document.querySelector(".popup__close_type_edit");
+const editPopupStatus = document.querySelector(".popup_place_status");
+const profileNameElement = document.querySelector(".profile__name");
+const profileStatusElement = document.querySelector(".profile__status");
+const profileNameInput = document.querySelector(".popup__input_text_name");
+const profileStatusInput = document.querySelector(".popup__input_text_status");
+const formElementProfile = document.querySelector(".popup__form_place_profile");
 
 function openPopup(popup) {
-  popup.classList.add('popup_opened');
+  popup.classList.add("popup_opened");
+  document.addEventListener("keydown", closeByEscape);
 }
 
-function openPopupEdit () {
-  const submitButton = formElementProfile.querySelector('.popup__submit-button')
-  console.log(submitButton)
-  submitButton.classList.add('popup__submit-button_invalid')
-  openPopup(editPopupStatus);
+function openPopupEdit() {
   profileNameInput.value = profileNameElement.textContent;
   profileStatusInput.value = profileStatusElement.textContent;
-  
+  openPopup(editPopupStatus);
 }
 
-editProfileButton.addEventListener('click', openPopupEdit);
+editProfileButton.addEventListener("click", openPopupEdit);
 
-const closeButtons = document.querySelectorAll('.popup__close');
+const closeButtons = document.querySelectorAll(".popup__close");
 
 const closePopup = (popup) => {
-  popup.classList.remove('popup_opened');
+  popup.classList.remove("popup_opened");
 };
 
 closeButtons.forEach((button) => {
-  const popup = button.closest('.popup');
-  button.addEventListener('click', () => closePopup(popup));
+  const popup = button.closest(".popup");
+  button.addEventListener("click", () => closePopup(popup));
 });
 
-function handleFormSubmitProfile (evt) {
+function closeByEscape(event) {
+  if (event.key === "Escape") {
+    const openedPopup = document.querySelector(".popup_opened");
+    closePopup(openedPopup);
+  }
+  document.removeEventListener("keydown", closeByEscape);
+}
+
+const popups = document.querySelectorAll(".popup");
+
+popups.forEach((popup) => {
+  popup.addEventListener("mousedown", (evt) => {
+    if (evt.target.classList.contains("popup_opened")) {
+      closePopup(popup);
+    }
+  });
+});
+
+function handleFormSubmitProfile(evt) {
   evt.preventDefault();
   profileNameElement.textContent = profileNameInput.value;
   profileStatusElement.textContent = profileStatusInput.value;
   closePopup(editPopupStatus);
- 
+  const submitButton = formElementProfile.querySelector(
+    ".popup__submit-button"
+  );
+  submitButton.classList.add("popup__submit-button_invalid");
+  submitButton.setAttribute("disabled", "disabled");
 }
-formElementProfile.addEventListener('submit', handleFormSubmitProfile);
+formElementProfile.addEventListener("submit", handleFormSubmitProfile);
 
 const initialElements = [
   {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    name: "Архыз",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
   },
   {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    name: "Челябинская область",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
   },
   {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    name: "Иваново",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
   },
   {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    name: "Камчатка",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
   },
   {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    name: "Холмогорский район",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
   },
   {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
+    name: "Байкал",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
+  },
 ];
 
-const elements = document.querySelector('.elements');
+const elements = document.querySelector(".elements");
 
 const handleDeleteButtonClick = (event) => {
   const button = event.target;
-  const element = button.closest('.element');
+  const element = button.closest(".element");
   element.remove();
-}
+};
 
-const popupPhotoBlock = document.querySelector('.popup-photo');
-const popupPhoto = document.querySelector('.popup-photo__photo');
-const popupName = document.querySelector('.popup-photo__name');
+const popupPhotoBlock = document.querySelector(".popup-photo");
+const popupPhoto = document.querySelector(".popup-photo__photo");
+const popupName = document.querySelector(".popup-photo__name");
 
 const openImagePopup = (event) => {
-  popupPhoto.setAttribute('src', event.target.getAttribute('src'));
-  popupPhoto.setAttribute('alt', event.target.getAttribute('alt'));
-  popupName.textContent = event.target.nextElementSibling.firstElementChild.textContent;
+  popupPhoto.setAttribute("src", event.target.getAttribute("src"));
+  popupPhoto.setAttribute("alt", event.target.getAttribute("alt"));
+  popupName.textContent = event.target
+    .closest(".element")
+    .querySelector(".element__description")
+    .querySelector(".element__title").textContent;
   openPopup(popupPhotoBlock);
 };
 
 const getCard = (item) => {
-  const cardElement = document.querySelector('#elementTemplate').content.cloneNode(true);
-  const elementName = cardElement.querySelector('.element__title');
-  const elementPhoto = cardElement.querySelector('.element__photo');
-  const deleteElementButton = cardElement.querySelector('.element__delete');
+  const cardElement = document
+    .querySelector("#elementTemplate")
+    .content.cloneNode(true);
+  const elementName = cardElement.querySelector(".element__title");
+  const elementPhoto = cardElement.querySelector(".element__photo");
+  const deleteElementButton = cardElement.querySelector(".element__delete");
 
   elementName.textContent = item.name;
-  elementPhoto.setAttribute('src', item.link);
-  elementPhoto.setAttribute('alt', item.name);
+  elementPhoto.setAttribute("src", item.link);
+  elementPhoto.setAttribute("alt", item.name);
 
-  deleteElementButton.addEventListener('click', handleDeleteButtonClick);
-  cardElement.querySelector('.element__like').addEventListener('click', function (evt){
-    evt.target.classList.toggle('element__like_active');
-  });
-  elementPhoto.addEventListener('click', openImagePopup)
+  deleteElementButton.addEventListener("click", handleDeleteButtonClick);
+  cardElement
+    .querySelector(".element__like")
+    .addEventListener("click", function (evt) {
+      evt.target.classList.toggle("element__like_active");
+    });
+  elementPhoto.addEventListener("click", openImagePopup);
   return cardElement;
 };
 
@@ -115,24 +141,25 @@ const createElement = (item) => {
 
 initialElements.forEach(createElement);
 
-const addCardButton = document.querySelector('.profile__add-button');
-const addCardPopup = document.querySelector('.popup_place_card');
+const addCardButton = document.querySelector(".profile__add-button");
+const addCardPopup = document.querySelector(".popup_place_card");
 
-function openPopupAdd () {
-  const submitButton = formElementAdd.querySelector('.popup__submit-button')
-  console.log(submitButton)
-  submitButton.classList.add('popup__submit-button_invalid')
+function openPopupAdd() {
   openPopup(addCardPopup);
 }
-addCardButton.addEventListener('click', openPopupAdd);
+addCardButton.addEventListener("click", openPopupAdd);
 
-const formElementAdd = document.querySelector('.popup__form_place_add-element');
+const formElementAdd = document.querySelector(".popup__form_place_add-element");
 
 const handleFormSubmitElement = (event) => {
   event.preventDefault();
   const formElementAdd = event.target;
-  const elementName = formElementAdd.querySelector('.popup__input_card_name').value;
-  const elementPhoto = formElementAdd.querySelector('.popup__input_card_link').value;
+  const elementName = formElementAdd.querySelector(
+    ".popup__input_card_name"
+  ).value;
+  const elementPhoto = formElementAdd.querySelector(
+    ".popup__input_card_link"
+  ).value;
   const element = {
     name: elementName,
     link: elementPhoto,
@@ -140,29 +167,9 @@ const handleFormSubmitElement = (event) => {
   createElement(element);
   formElementAdd.reset();
   closePopup(addCardPopup);
+  const submitButton = formElementAdd.querySelector(".popup__submit-button");
+  submitButton.classList.add("popup__submit-button_invalid");
+  submitButton.setAttribute("disabled", "disabled");
 };
 
-formElementAdd.addEventListener('submit', handleFormSubmitElement);
-
-
-document.addEventListener("click", (e) => {
-  const popups = document.querySelectorAll('.popup');
-  const popupContainers = document.querySelectorAll('.popup__container');
-  if (e.target.closest(".popup")) {
-    popupContainers.forEach((container) => {
-      if (!e.target.closest(".popup__container")) {
-        const popup = container.closest('.popup')
-        closePopup(popup);
-      }
-    });
-  } 
-});
-
-document.addEventListener('keydown', (event) => {
-  const popups = document.querySelectorAll('.popup');
-  if (event.key === 'Escape') {
-    popups.forEach((popup) => {
-      closePopup(popup);
-    });
-  }
-});
+formElementAdd.addEventListener("submit", handleFormSubmitElement);
