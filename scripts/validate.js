@@ -67,7 +67,6 @@ const toggleButtonState = (
 
 const setEventListenners = (
   forms,
-  inputList,
   errorClassTemplate,
   activeErrorClass,
   invalidSubmitButton,
@@ -75,35 +74,41 @@ const setEventListenners = (
   formSelector,
   submitButtonSelector
 ) => {
+  
+
+
   forms.forEach((form) => {
     form.addEventListener("submit", (evt) => {
       evt.preventDefault();
     });
-  });
-
-  inputList.forEach((input) => {
-    input.addEventListener("input", (evt) => {
-      checkInputValidity(input, errorClassTemplate, activeErrorClass);
-      toggleButtonState(
-        input,
-        errorClassTemplate,
-        invalidSubmitButton,
-        inputSelector,
-        formSelector,
-        submitButtonSelector
-      );
+    const inputFormlists = form.querySelectorAll(inputSelector)
+    
+    inputFormlists.forEach((input) => {
+      input.addEventListener("input", (evt) => {
+        console.log(input)
+        checkInputValidity(input, errorClassTemplate, activeErrorClass);
+        toggleButtonState(
+          input,
+          errorClassTemplate,
+          invalidSubmitButton,
+          inputSelector,
+          formSelector,
+          submitButtonSelector
+        );
+      });
     });
   });
+
+  
 };
 
 const enableValidation = (config) => {
   const forms = document.querySelectorAll(config.formSelector);
-  const inputList = Array.from(document.querySelectorAll(config.inputSelector));
+ 
 
 
   setEventListenners(
     forms,
-    inputList,
     config.errorClassTemplate,
     config.activeErrorClass,
     config.invalidSubmitButton,
