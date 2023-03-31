@@ -25,6 +25,7 @@ const closeButtons = document.querySelectorAll(".popup__close");
 
 const closePopup = (popup) => {
   popup.classList.remove("popup_opened");
+  document.removeEventListener("keydown", closeByEscape);
 };
 
 closeButtons.forEach((button) => {
@@ -34,10 +35,8 @@ closeButtons.forEach((button) => {
 
 function closeByEscape(event) {
   if (event.key === "Escape") {
-    const openedPopup = document.querySelector(".popup_opened");
-    if (openedPopup !== null) {
-    document.removeEventListener("keydown", closeByEscape);
-    closePopup(openedPopup);}
+    const openedPopup = document.querySelector(".popup_opened");   
+    closePopup(openedPopup);
   }
 }
 

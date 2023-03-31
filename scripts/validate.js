@@ -82,6 +82,8 @@ const setEventListenners = (
       evt.preventDefault();
     });
     const inputFormlists = form.querySelectorAll(inputSelector)
+    const submitButton = form.querySelector(submitButtonSelector);
+    disableButton(submitButton, invalidSubmitButton);
     
     inputFormlists.forEach((input) => {
       input.addEventListener("input", (evt) => {
