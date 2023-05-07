@@ -8,6 +8,17 @@ const profileNameInput = document.querySelector(".popup__input_text_name");
 const profileStatusInput = document.querySelector(".popup__input_text_status");
 const formElementProfile = document.querySelector(".popup__form_place_profile");
 
+import Card from './Card.js';
+
+
+
+
+
+
+
+
+
+
 function openPopup(popup) {
   popup.classList.add("popup_opened");
   document.addEventListener("keydown", closeByEscape);
@@ -92,52 +103,21 @@ const initialElements = [
 
 const elements = document.querySelector(".elements");
 
-const handleDeleteButtonClick = (event) => {
-  const button = event.target;
-  const element = button.closest(".element");
-  element.remove();
-};
+
 
 const popupPhotoBlock = document.querySelector(".popup-photo");
 const popupPhoto = document.querySelector(".popup-photo__photo");
 const popupName = document.querySelector(".popup-photo__name");
 
-const openImagePopup = (event) => {
-  popupPhoto.setAttribute("src", event.target.getAttribute("src"));
-  popupPhoto.setAttribute("alt", event.target.getAttribute("alt"));
-  popupName.textContent = event.target
-    .closest(".element")
-    .querySelector(".element__description")
-    .querySelector(".element__title").textContent;
-  openPopup(popupPhotoBlock);
-};
 
-const getCard = (item) => {
-  const cardElement = document
-    .querySelector("#elementTemplate")
-    .content.cloneNode(true);
-  const elementName = cardElement.querySelector(".element__title");
-  const elementPhoto = cardElement.querySelector(".element__photo");
-  const deleteElementButton = cardElement.querySelector(".element__delete");
 
-  elementName.textContent = item.name;
-  elementPhoto.setAttribute("src", item.link);
-  elementPhoto.setAttribute("alt", item.name);
-
-  deleteElementButton.addEventListener("click", handleDeleteButtonClick);
-  cardElement
-    .querySelector(".element__like")
-    .addEventListener("click", function (evt) {
-      evt.target.classList.toggle("element__like_active");
-    });
-  elementPhoto.addEventListener("click", openImagePopup);
-  return cardElement;
-};
 
 const createElement = (item) => {
-  const newCard = getCard(item);
-  elements.prepend(newCard);
+  const newCard = new Card(item)
+  const getCard = newCard.getCard()
+  elements.prepend(getCard);
 };
+
 
 initialElements.forEach(createElement);
 
