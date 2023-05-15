@@ -1,4 +1,4 @@
-const data = {
+ const data = {
   formSelector: ".popup__form",
   inputSelector: ".popup__input",
   errorClassTemplate: ".popup__input-error_type_",
@@ -7,15 +7,19 @@ const data = {
   submitButtonSelector: ".popup__submit-button",
 };
 
-class FormValidator {
-  constructor(data, currentForm) {
+export {data}
+
+export class FormValidator {
+  constructor(data, form) {
     this.errorClassTemplate = data.errorClassTemplate;
     this.activeErrorClass = data.activeErrorClass;
     this.invalidSubmitButton = data.invalidSubmitButton;
     this.inputSelector = data.inputSelector;
     this.formSelector = data.formSelector;
     this.submitButtonSelector = data.submitButtonSelector;
-    this.currentForm = currentForm;
+    this.currentForm = form;
+    this.submitButton = this.currentForm.querySelector(this.submitButtonSelector)
+    this.inputFormlist = this.currentForm.querySelectorAll(this.inputSelector)
   }
 
   _showIputError = (errorTextElement, validationMessage) => {
@@ -44,34 +48,34 @@ class FormValidator {
     }
   };
 
-  _disableButton = (submitButton) => {
-    submitButton.classList.add(this.invalidSubmitButton);
-    submitButton.disabled = true;
-    submitButton.setAttribute("disabled", "disabled");
+  disableButton = () => {
+    this.submitButton.classList.add(this.invalidSubmitButton);
+    this.submitButton.disabled = true;
+    this.submitButton.setAttribute("disabled", "disabled");
   };
 
-  _enableButton = (submitButton) => {
-    submitButton.classList.remove(this.invalidSubmitButton);
-    submitButton.disabled = false;
-    submitButton.removeAttribute("disabled", "disabled");
+  _enableButton = () => {
+    this.submitButton.classList.remove(this.invalidSubmitButton);
+    this.submitButton.disabled = false;
+    this.submitButton.removeAttribute("disabled", "disabled");
   };
 
-  _hasInvalidInput = (nededForm) => {
-    const neededInputs = nededForm.querySelectorAll(this.inputSelector);
-    return Array.from(neededInputs).some((input) => !input.validity.valid);
+  _hasInvalidInput = () => {
+   
+    return Array.from(this.inputFormlist).some((input) => !input.validity.valid);
   };
 
   _toggleButtonState = (input) => {
     const errorTextElement = document.querySelector(
       `${this.errorClassTemplate}${input.name}`
     );
-    const nededForm = errorTextElement.closest(this.formSelector);
-    const submitButton = nededForm.querySelector(this.submitButtonSelector);
+    
+    
 
-    if (this._hasInvalidInput(nededForm, this.inputSelector)) {
-      this._disableButton(submitButton, this.invalidSubmitButton);
+    if (this._hasInvalidInput(this.currentForm, this.inputSelector)) {
+      this.disableButton(this.submitButton, this.invalidSubmitButton);
     } else {
-      this._enableButton(submitButton, this.invalidSubmitButton);
+      this._enableButton(this.submitButton, this.invalidSubmitButton);
     }
   };
 
@@ -79,15 +83,11 @@ class FormValidator {
     this.currentForm.addEventListener("submit", (evt) => {
       evt.preventDefault();
     });
-    const inputFormlists = this.currentForm.querySelectorAll(
-      this.inputSelector
-    );
-    const submitButton = this.currentForm.querySelector(
-      this.submitButtonSelector
-    );
-    this._disableButton(submitButton, this.invalidSubmitButton);
 
-    inputFormlists.forEach((input) => {
+  
+    this.disableButton(this.submitButton, this.invalidSubmitButton);
+
+    this.inputFormlist.forEach((input) => {
       input.addEventListener("input", (evt) => {
         this._checkInputValidity(input);
         this._toggleButtonState(input);
@@ -100,14 +100,13 @@ class FormValidator {
   };
 }
 
-function update(data, currentForm) {
-  const formValidator = new FormValidator(data, currentForm);
-  const enableValidation = formValidator.enableValidation;
-  enableValidation();
-}
+
+
 
 const forms = document.querySelectorAll(data.formSelector);
+
 forms.forEach((form) => {
-  const currentForm = form;
-  update(data, currentForm);
+  const formValidator = new FormValidator(data, form);
+  const enableValidation = formValidator.enableValidation;
+  enableValidation();
 });
