@@ -1,4 +1,4 @@
- const data = {
+const data = {
   formSelector: ".popup__form",
   inputSelector: ".popup__input",
   errorClassTemplate: ".popup__input-error_type_",
@@ -7,7 +7,7 @@
   submitButtonSelector: ".popup__submit-button",
 };
 
-export {data}
+export { data };
 
 export class FormValidator {
   constructor(data, form) {
@@ -18,8 +18,10 @@ export class FormValidator {
     this.formSelector = data.formSelector;
     this.submitButtonSelector = data.submitButtonSelector;
     this.currentForm = form;
-    this.submitButton = this.currentForm.querySelector(this.submitButtonSelector)
-    this.inputFormlist = this.currentForm.querySelectorAll(this.inputSelector)
+    this.submitButton = this.currentForm.querySelector(
+      this.submitButtonSelector
+    );
+    this.inputFormlist = this.currentForm.querySelectorAll(this.inputSelector);
   }
 
   _showIputError = (errorTextElement, validationMessage) => {
@@ -61,16 +63,15 @@ export class FormValidator {
   };
 
   _hasInvalidInput = () => {
-   
-    return Array.from(this.inputFormlist).some((input) => !input.validity.valid);
+    return Array.from(this.inputFormlist).some(
+      (input) => !input.validity.valid
+    );
   };
 
   _toggleButtonState = (input) => {
     const errorTextElement = document.querySelector(
       `${this.errorClassTemplate}${input.name}`
     );
-    
-    
 
     if (this._hasInvalidInput(this.currentForm, this.inputSelector)) {
       this.disableButton(this.submitButton, this.invalidSubmitButton);
@@ -84,7 +85,6 @@ export class FormValidator {
       evt.preventDefault();
     });
 
-  
     this.disableButton(this.submitButton, this.invalidSubmitButton);
 
     this.inputFormlist.forEach((input) => {
@@ -99,14 +99,3 @@ export class FormValidator {
     this._setEventListenners();
   };
 }
-
-
-
-
-const forms = document.querySelectorAll(data.formSelector);
-
-forms.forEach((form) => {
-  const formValidator = new FormValidator(data, form);
-  const enableValidation = formValidator.enableValidation;
-  enableValidation();
-});
