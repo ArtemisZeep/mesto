@@ -3,7 +3,7 @@ export default class Card {
     this.name = item.name;
     this.link = item.link;
     this._handleCardClick = handleCardClick;
-    this.containerSelector = containerSelector;
+    this._containerSelector = containerSelector;
   }
 
   _handleDeleteButtonClick = () => {
@@ -24,8 +24,8 @@ export default class Card {
     });
   };
 
-  _createCard() {
-    this._card = this.containerSelector.cloneNode(true).children[0];
+  createCard() {
+    this._card = this._containerSelector.content.cloneNode(true).children[0];
     this._elementName = this._card.querySelector(".element__title");
     this._elementPhoto = this._card.querySelector(".element__photo");
     this._likeButton = this._card.querySelector(".element__like");
@@ -35,8 +35,21 @@ export default class Card {
     this._setEventListeners();
   }
   getCard() {
-    this._createCard();
+    this.createCard();
 
     return this._card;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -3,22 +3,20 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" href="./pages/index.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Место</title>
-  <script type="module" src="./scripts/index.js" defer></script>
-  <script type="module" src="./scripts/Card.js" defer></script>
-  <script type="module" src="./scripts/FormValidator.js" defer></script>
+  <title>Место</title> 
 </head>
 
 <body class="page">
   <header class="header">
-    <img class="header__logo" src="./images/logo/__logo.svg" alt="Логотип">
+    <!-- <img class="header__logo" src="./images/logo/__logo.svg" alt="Логотип"> -->
+    <img class="header__logo" src="<%=require('./images/logo/__logo.svg')%>" alt="Логотип">
   </header>
   <main class="main">
     <section class="profile">
       <div class="profile__content">
-        <img class="profile__avatar" src="./images/profile/__avatar.png" alt="Аватар">
+        <!-- <img class="profile__avatar" src="./images/profile/__avatar.png" alt="Аватар"> -->
+        <img class="profile__avatar" src="<%=require('./images/profile/__avatar.png')%>" alt="Аватар">
         <div class="profile__info">
           <div class="profile__row">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
