@@ -1,11 +1,11 @@
-import  {FormValidator}  from './components/FormValidator.js';
-import { data } from "./components/FormValidator.js";
-import Card from "./components/Card.js";
-import Section from "./components/Section.js";
-import PopupWithImage from "./components/PopupWithImage.js";
-import PopupWithForm from "./components/PopupWithForm.js";
-import UserInfo from "./components/UserInfo.js";
-import "./pages/index.css";
+import  {FormValidator}  from '../components/FormValidator.js';
+import { data } from "../components/FormValidator.js";
+import Card from "../components/Card.js";
+import Section from "../components/Section.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import UserInfo from "../components/UserInfo.js";
+import './index.css';
 
 
 
@@ -87,8 +87,8 @@ renderInitialCards.renderItems();
 const popupAddCard = new PopupWithForm(containerElementAdd, {
   callbackFormSubmit: (formValues) => {
     renderInitialCards.addItem(renderCard({
-      name: formValues.name,
-      link: formValues.link
+      name: formValues["card-name"],
+      link: formValues["card-link"]
     }));
     popupAddCard.close();
   }
@@ -108,11 +108,10 @@ const userInfo = new UserInfo({profileNameElement, profileStatusElement});
 
 const popupEditProfile = new PopupWithForm(editPopupStatus, {
   callbackFormSubmit: (formValues) => {
-    userInfo.setUserInfo({
-      name: formValues.name,
-      status: formValues.status
-    });
+    userInfo.setUserInfo(formValues);
+
     popupEditProfile.close();
+    disableEditProfileButton();
   }
 });
 popupEditProfile.setEventListeners();
@@ -124,30 +123,4 @@ const openEditPopup = () => {
   profileStatusInput.value = actualUserInfo.profileStatus;
 }
 editProfileButton.addEventListener('click', openEditPopup);
-
-
-const handleFormSubmitProfile = () => {
-    const newValues = popupEditProfile._getInputValues(); 
-    userInfo.setUserInfo(newValues);
-    disableEditProfileButton();
-}
-
-formElementProfile.addEventListener('submit', handleFormSubmitProfile);
-
-
-
-function closePopup(popup) {
-  popup.classList.remove("popup_opened");
-}
-
-closeButtons.forEach((button) => {
-  const popup = button.closest(".popup");
-  button.addEventListener("click", () => closePopup(popup));
-});
-
-
-
-
-
-
 

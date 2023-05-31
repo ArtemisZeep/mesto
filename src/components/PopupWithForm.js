@@ -9,45 +9,11 @@ export default class PopupWithForm extends Popup {
   }
 
   _getInputValues() {
-    const formValues = {};
+    const formValues = [];
+    
     this._inputList.forEach(input => {
       formValues[input.name] = input.value;
     });
-
-
-    if (this._popup.classList.contains('popup_place_card')) {
-      const name = "name";
-    
-      Object.defineProperty(formValues,name,
-         Object.getOwnPropertyDescriptor(formValues, "card-name"));
-
-      const link = "link";
-    
-      Object.defineProperty(formValues, link,
-          Object.getOwnPropertyDescriptor(formValues, "card-link"));
-    
-      delete formValues["card-name"];
-
-      delete formValues["card-link"];
-    }
-
-
-    if (this._popup.classList.contains('popup_place_status')) {
-      const profileName = "profileName";
-    
-      Object.defineProperty(formValues,profileName,
-         Object.getOwnPropertyDescriptor(formValues, "text-name"));
-
-      const profileStatus = "profileStatus";
-    
-      Object.defineProperty(formValues, profileStatus,
-          Object.getOwnPropertyDescriptor(formValues, "text-status"));
-    
-      delete formValues["text-name"];
-
-      delete formValues["text-status"];
-      }
-
     return formValues;
     
   }
@@ -60,11 +26,11 @@ export default class PopupWithForm extends Popup {
     });
   }
 
+
+
   close() {
     super.close();
-    if (this._popup.classList.contains('popup_place_card')) {
     this._popupForm.reset();
-    }
     
   }
 }
