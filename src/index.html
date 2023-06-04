@@ -5,8 +5,8 @@
   <meta charset="UTF-8">
   <!-- <link rel="stylesheet" href="./pages/index.css"> -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Место</title> 
-  <!-- <script type="module" src="./index.js" defer></script> -->
+  <title>Место</title>
+  <!-- <script type="module" src="./pages/index.js" defer></script> -->
 </head>
 
 <body class="page">
@@ -17,8 +17,11 @@
   <main class="main">
     <section class="profile">
       <div class="profile__content">
-        <!-- <img class="profile__avatar" src="./images/profile/__avatar.png" alt="Аватар"> -->
-        <img class="profile__avatar" src="<%=require('./images/profile/__avatar.png')%>" alt="Аватар">
+        <div class="profile__avatar-container">
+          <img class="profile__avatar" src="#" alt="Аватар">
+          <!-- <img class="profile__avatar" src="<%=require('./images/profile/__avatar.png')%>" alt="Аватар"> -->
+          <button type="button" class="profile__avatar-edit"></button>
+        </div>
         <div class="profile__info">
           <div class="profile__row">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -36,7 +39,10 @@
             <img class="element__photo">
             <div class="element__description">
               <h3 class="element__title"></h3>
-              <button class="element__like" type="button"></button>
+              <div class="element__like-container">
+                <button class="element__like" type="button"></button>
+                <p class="element__like-counter"></p>
+              </div>
             </div>
             <button class="element__delete" type="button"></button>
           </div>
@@ -82,6 +88,27 @@
       <img class="popup-photo__photo"
         src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg">
       <p class="popup-photo__name">Байкал</p>
+      <button class="popup__close" type="button"></button>
+    </div>
+  </section>
+  <section class="popup popup-delete">
+    <div class="popup__container popup-delete__container">
+      <h3 class="popup__title">Вы уверены?</h3>
+      <form class="popup__form popup__form_place_delete" name="delete-card" novalidate>
+        <button type="submit" class="popup__submit-button">Да</button>
+      </form>
+      <button class="popup__close" type="button"></button>
+    </div>
+  </section>
+  <section class="popup popup_place_avatar">
+    <div class="popup__container">
+      <h3 class="popup__title">Обновить аватар</h3>
+      <form class="popup__form popup__form_place_edit-avatar" name="avatarForm">
+        <input type="url" class="popup__input popup__input_avatar_input" name="avatar-edit" required
+          placeholder="Введите ссылку на аватар">
+        <span class="popup__input-error popup__input-error_type_avatar-edit"></span>
+        <button type="submit" class="popup__submit-button">Сохранить</button>
+      </form>
       <button class="popup__close" type="button"></button>
     </div>
   </section>
