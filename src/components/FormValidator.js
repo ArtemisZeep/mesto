@@ -53,12 +53,14 @@ export class FormValidator {
   disableButton = () => {
     this.submitButton.classList.add(this.invalidSubmitButton);
     this.submitButton.disabled = true;
+        /// Без запроса ниже не будет работать
     this.submitButton.setAttribute("disabled", "disabled");
   };
 
   _enableButton = () => {
     this.submitButton.classList.remove(this.invalidSubmitButton);
     this.submitButton.disabled = false;
+    /// Без запроса ниже не будет работать
     this.submitButton.removeAttribute("disabled", "disabled");
   };
 
@@ -69,9 +71,6 @@ export class FormValidator {
   };
 
   _toggleButtonState = (input) => {
-    const errorTextElement = document.querySelector(
-      `${this.errorClassTemplate}${input.name}`
-    );
 
     if (this._hasInvalidInput(this.currentForm, this.inputSelector)) {
       this.disableButton(this.submitButton, this.invalidSubmitButton);

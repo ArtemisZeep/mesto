@@ -1,5 +1,3 @@
-
-
 export default class UserInfo {
   constructor({ profileNameElement, profileStatusElement, avatarImage }) {
     this._profileName = profileNameElement;
@@ -10,16 +8,16 @@ export default class UserInfo {
   getUserInfo() {
     return {
       profileName: this._profileName.textContent,
-      profileStatus: this._profileStatus.textContent
+      profileStatus: this._profileStatus.textContent,
     };
   }
 
-  setUserInfo({name, about}) {
+  setUserInfo({ name, about }) {
     this._profileName.textContent = name;
     this._profileStatus.textContent = about;
   }
 
-    setUserAvatar(avatarLink) {
-      this._avatarImage.setAttribute("src",avatarLink);
-    }
+  setUserAvatar(avatarLink) {
+    this._avatarImage.setAttribute("src", avatarLink);
+  }
 }
